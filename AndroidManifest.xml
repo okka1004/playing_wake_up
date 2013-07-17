@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.alram2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+  
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.alram2.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.listview.ListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".EditActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MusicActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AdresslistActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".EditMessageActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.alram2.SettingActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.alram2.MessageActivity"
+            android:label="@string/app_name" >
+        </activity>
+                <activity
+            android:name="com.example.game.GameActivity"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        <receiver
+            android:name="AlarmService_Service"
+            android:process=":remote" />
+    </application>
+
+</manifest>
