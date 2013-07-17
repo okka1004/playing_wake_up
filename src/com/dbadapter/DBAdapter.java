@@ -204,9 +204,22 @@ public class DBAdapter {
 	public void close() {
 		DBHelper.close();
 	}
-
-	public void deleteRow(String index) {
-		db.execSQL("delete from alarmlist where num='"
-				+ (Integer.parseInt(index)) + "'");
+	
+	public void deleteRow(int position, ArrayList<Alarm_info> registeredAlarmList) {
+		int deletedRowId = position + 1;
+		String query = "DELETE FROM alarmlist WHERE num='"
+				+ deletedRowId + "'";
+		
+		db.execSQL(query);
+		registeredAlarmList.remove(position);
+		
+		for (int i = 1; i <= registeredAlarmList.size(); i++) {
+			query = "UPDATE alarmlist SET num=" + i + " WHERE num=" 
+										+ registeredAlarmList.get(i-1).getindex();
+			
+			Cursor c = db.rawQuery(query, null);
+			c.moveToFirst();
+			c.close();
+		}
 	}
 }

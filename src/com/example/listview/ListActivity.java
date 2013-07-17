@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,10 +60,10 @@ public class ListActivity extends Activity implements OnClickListener,
 	public void refreshList() {
 		mydb.open();
 		
-		for (int j = 1; j <= listdata.size(); j++) {
-			mydb.updateIndexNumOfAlarm(j);
-			Log.d("우헤헿", "i " + j+1 + " j " + j);
-		}
+//		for (int j = 1; j <= listdata.size(); j++) {
+//			mydb.updateIndexNumOfAlarm(j);
+//			Log.d("우헤헿", "i " + j+1 + " j " + j);
+//		}
 		listdata = mydb.get_Alarm_list();
 		
 		mydb.close();
@@ -112,21 +114,11 @@ public class ListActivity extends Activity implements OnClickListener,
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-
-						int deletedRow = position + 1;
-
 						mydb.open();
-						mydb.deleteRow(Integer.toString(deletedRow));
-						Log.d("데이터사이즈", Integer.toString(listdata.size()));
-//						for (int i = deletedRow + 1; i <= (listdata.size() - (deletedRow - 1)); i++) {
-//							Log.d("우헤헿", "딜리티드로우 " + deletedRow + " 리스트데이터 " + listdata.size());
-//							
-//
-//						}
+						mydb.deleteRow(position, listdata);
 						mydb.close();
 						
 						refreshList();
-
 					}
 				});
 		dialogBuilder.setNegativeButton("아니오",
